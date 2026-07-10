@@ -1,0 +1,28 @@
+Day 1 Progress Report
+Tasks Completed
+Learned Python fundamentals.
+Understood variables, data types, and data structures (List, Tuple, Set, Dictionary).
+Practiced conditional statements (if, elif, else) and loops.
+Learned the basics of Git and GitHub.
+Created a GitHub repository named MLB-Internship with a Day1 folder.
+Built a Student Grading System in Python.
+Project Summary
+
+The Student Grading System takes the student's name, class, number of subjects, subject names, and marks as input. It validates the entered marks, calculates the average score, assigns a grade (A, B, C, D, or F) based on the average, and displays the student's complete report, including subject-wise marks.
+
+Concepts Used
+Variables
+Data Types (String, Integer, Float)
+Dictionary
+Loops (for, while)
+Conditional Statements (if, elif, else)
+User Input
+Basic Output Formatting
+Challenges Faced
+Faced an issue where Python was not installed correctly.
+Learned how to install Python and add it to the system PATH.
+Fixed input formatting issues using f-strings.
+Improved the grading logic and added input validation.
+Learning Outcome
+
+Today, I learned the fundamentals of Python programming and GitHub. I understood how to take user input, use loops and conditions, store data in a dictionary, calculate averages, and generate a report. I also learned the basics of version control using Git and GitHub.
