@@ -2,11 +2,18 @@ name=input("Enter Student Name:")
 std_class=input("Enter Class:")
 
 num_subjects=int(input("Enter Number of Subjects:"))
+subjects={}
 total=0
 
 for i in range(num_subjects):
     subject=input(f"Enter Subject{i+1}:")
-    marks=float(input(f"Enter marks for {subject}:"))
+    while True: 
+        marks=float(input(f"Enter marks for {subject}:"))
+        if 0<= marks <=100:
+            break
+        else:
+            print("Invalid Marks")
+    subjects[subject]=marks
     total += marks
     print("\n")
     
