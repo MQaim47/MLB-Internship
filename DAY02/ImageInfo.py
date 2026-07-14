@@ -1,5 +1,5 @@
 from PIL import Image
-img=Image.open("H:\Studies\MLB-Internship\DAY02\Image.jpg")
+img=Image.open("H:\\Studies\\MLB-Internship\\DAY02\\Image.jpg")
 width, height = img.size
 pixel_values = list(img.getdata())
 channels=len(pixel_values[0])
