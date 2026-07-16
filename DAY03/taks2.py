@@ -1,16 +1,9 @@
-import os
-
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image.jpg")
-img = cv2.imread(image_path)
-
-if img is None:
-    raise FileNotFoundError(f"Unable to load image from: {image_path}")
-
-img = img[:, :, ::-1]
+img =cv2.imread("H:\\Studies\\MLB-Internship\\DAY03\\image.jpg")
+img =img [:,:,::-1]
 
 R = img[:,:,0]
 G = img[:,:,1]
@@ -33,13 +26,8 @@ plt.imshow(B,cmap="gray")
 plt.title("Blue Channel")
 plt.show()
 
-merged = np.zeros_like(img)
-merged[:, :, 0] = R
-merged[:, :, 1] = G
-merged[:, :, 2] = B
-
-plt.figure(figsize=(8, 4))
-plt.imshow(merged)
-plt.title("Merged Image")
-plt.axis("off")
+merged =np.zeros_like(img)
+merged[:,:,0] = R
+merged[:,:,1] = G
+merged[:,:,2] = B
 plt.show()
