@@ -61,7 +61,6 @@ def convolve_stride(image, kernel, stride):
 
     return output.astype(np.uint8)
 
-# =========================
 
 stride1_output = convolve_stride(
     img,
@@ -70,7 +69,6 @@ stride1_output = convolve_stride(
 )
 
 
-# =========================
 
 stride2_output = convolve_stride(
     img,
