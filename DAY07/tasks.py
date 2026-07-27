@@ -1,6 +1,7 @@
 import gradio as gr
 import cv2
 import numpy as np
+import time
 
 
 # PADDING
@@ -254,59 +255,161 @@ def process_image(image, filter_name, kernel_size):
 
     return result
 
+def compare_filters(image, kernel_size):
+    gray = cv2.cvtColor(
+        image,
+        cv2.COLOR_RGB2GRAY
+    )
+
+    noisy = add_salt_pepper(gray)
+
+    mean_img = mean_filter(
+        noisy,
+        kernel_size
+    )
+
+    box_img = box_filter(
+        noisy,
+        kernel_size
+    )
+
+    gaussian_img = gaussian_filter(
+        noisy,
+        kernel_size
+    )
+
+    median_img = median_filter(
+        noisy,
+        kernel_size
+    )
+
+    return (
+        noisy,
+        mean_img,
+        box_img,
+        gaussian_img,
+        median_img
+    )
+
+
+def performance_analysis(gray, kernel_size):
+    noisy = add_salt_pepper(gray)
+
+    start = time.time()
+    mean_filter(noisy, kernel_size)
+    mean_time = time.time() - start
+
+    start = time.time()
+    box_filter(noisy, kernel_size)
+    box_time = time.time() - start
+
+    start = time.time()
+    gaussian_filter(noisy, kernel_size)
+    gaussian_time = time.time() - start
+
+    start = time.time()
+    median_filter(noisy, kernel_size)
+    median_time = time.time() - start
+
+    return f"""
+    Mean Filter Time: {mean_time} sec
+    Box Filter Time: {box_time} sec
+    Gaussian Filter Time: {gaussian_time} sec
+    Median Filter Time: {median_time} sec
+    """
 
 # EXAMPLES
 
 examples = [
-    ["examples/sample1.jpg", "Mean", 3],
-    ["examples/sample2.jpg", "Gaussian", 5],
-    ["examples/sample3.jpg", "Median", 3]
+    ["examples/Mean.jpg", "Mean", 3],
+    ["examples/Gaussian.jpg", "Gaussian", 5],
+    ["examples/Median.jpg", "Median", 3]
 ]
 
 
 # GRADIO UI
 
-demo = gr.Interface(
-    fn=process_image,
+# demo = gr.Interface(
+#     fn=process_image,
+
+#     inputs=[
+#         gr.Image(label="Upload Image"),
+
+#         gr.Dropdown(
+#             choices=[
+#                 "Mean",
+#                 "Box",
+#                 "Gaussian",
+#                 "Median"
+#             ],
+#             value="Mean",
+#             label="Filter"
+#         ),
+
+#         gr.Radio(
+#             choices=[3,5,7],
+#             value=3,
+#             label="Kernel Size"
+#         )
+#     ],
+
+#     outputs=gr.Image(
+#         label="Filtered Output"
+#     ),
+
+#     title="Image Filtering with Manual Convolution ",
+
+#     description="""
+#     Mean Filter,
+#     Box Filter,
+#     Gaussian Filter,
+#     Median Filter
+
+#     Implemented Manually Using NumPy.
+#     No OpenCV Filtering Functions Used.
+#     """,
+
+#     examples=examples
+# )
+
+# demo.launch(share=True)
+
+def filter_comparison(image, kernel_size):
+    return compare_filters(image, kernel_size)
+
+
+comparison_demo = gr.Interface(
+
+    fn=filter_comparison,
 
     inputs=[
-        gr.Image(label="Upload Image"),
 
-        gr.Dropdown(
-            choices=[
-                "Mean",
-                "Box",
-                "Gaussian",
-                "Median"
-            ],
-            value="Mean",
-            label="Filter"
+        gr.Image(
+            type="numpy",
+            label="Upload Image"
         ),
 
         gr.Radio(
-            choices=[3,5,7],
+            choices=[3, 5, 7],
             value=3,
             label="Kernel Size"
         )
     ],
 
-    outputs=gr.Image(
-        label="Filtered Output"
-    ),
+    outputs=[
 
-    title="Image Filtering with Manual Convolution ",
+        gr.Image(label="Noisy Image"),
 
-    description="""
-    Mean Filter,
-    Box Filter,
-    Gaussian Filter,
-    Median Filter
+        gr.Image(label="Mean Filter"),
 
-    Implemented Manually Using NumPy.
-    No OpenCV Filtering Functions Used.
-    """,
+        gr.Image(label="Box Filter"),
 
-    examples=examples
+        gr.Image(label="Gaussian Filter"),
+
+        gr.Image(label="Median Filter")
+    ],
+
+    title="Filter Comparison"
 )
 
-demo.launch(share=True)
+comparison_demo.launch(share=True)
