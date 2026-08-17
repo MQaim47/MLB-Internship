@@ -1,0 +1,34 @@
+AI (Artificial Intelligence)
+
+AI is the broad field of creating machines that can perform tasks that normally require human intelligence such as reasoning, learning, decision-making, and problem-solving.
+
+Examples
+Voice Assistants (Siri, Alexa)
+ChatGPT
+Self-driving cars
+
+
+Machine Learning (ML)
+
+Machine Learning is a subset of AI where computers learn patterns from data and make predictions without being explicitly programmed.
+
+Examples
+Email Spam Detection
+Netflix Recommendations
+House Price Prediction
+
+
+Deep Learning (DL)
+
+Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to automatically learn complex patterns from large amounts of data.
+
+Examples
+Face Recognition
+Image Classification
+Speech Recognition
+
+
+
+AI
+->->ML
+    ->->DL
