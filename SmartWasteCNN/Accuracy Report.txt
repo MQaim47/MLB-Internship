@@ -1,0 +1,85 @@
+# Smart Waste Classification Using CNN – Final Evaluation Report
+
+## Project Overview
+
+The objective of this project was to build a Convolutional Neural Network (CNN) capable of classifying waste images into six categories using the TrashNet dataset:
+
+* Cardboard
+* Glass
+* Metal
+* Paper
+* Plastic
+* Trash
+
+The model was implemented in PyTorch without using transfer learning or object detection frameworks.
+
+## Dataset
+
+The TrashNet dataset contains labeled waste images belonging to six different categories. Images were resized to 128×128 pixels, normalized, and divided into training, validation, and testing sets.
+
+## Model Architecture
+
+A simple CNN architecture was used consisting of:
+
+* Convolution Layer 1 (3 → 16 channels)
+* ReLU Activation
+* Max Pooling
+* Convolution Layer 2 (16 → 32 channels)
+* ReLU Activation
+* Max Pooling
+* Flatten Layer
+* Fully Connected Layer (28800 → 128)
+* Output Layer (128 → 6 classes)
+
+## Training Configuration
+
+* Optimizer: Adam
+* Learning Rate: 0.001
+* Batch Size: 32
+* Epochs: 10
+* Loss Function: CrossEntropyLoss
+* Data Augmentation: Horizontal Flip and Rotation
+
+## Evaluation Results
+
+### Overall Performance
+
+| Metric    | Score  |
+| --------- | ------ |
+| Accuracy  | 92.91% |
+| Precision | 93.04% |
+| Recall    | 92.91% |
+| F1-Score  | 92.94% |
+
+### Class-wise Performance
+
+| Class     | Precision | Recall | F1-Score |
+| --------- | --------- | ------ | -------- |
+| Cardboard | 0.98      | 0.96   | 0.97     |
+| Glass     | 0.95      | 0.90   | 0.92     |
+| Metal     | 0.91      | 0.90   | 0.91     |
+| Paper     | 0.95      | 0.95   | 0.95     |
+| Plastic   | 0.90      | 0.96   | 0.93     |
+| Trash     | 0.77      | 0.83   | 0.80     |
+
+### Additional Statistics
+
+* Test Samples: 254
+* Macro Average F1-Score: 0.91
+* Weighted Average F1-Score: 0.93
+
+## Analysis
+
+The model achieved an overall accuracy of 92.91%, indicating strong classification performance across most waste categories.
+
+The highest-performing category was Cardboard with an F1-score of 0.97, followed by Paper with an F1-score of 0.95. Plastic was also classified effectively with a recall of 0.96.
+
+The Trash category achieved comparatively lower performance (F1-score of 0.80), likely due to fewer training samples and higher visual variability compared to other classes.
+
+Data augmentation and the Adam optimizer contributed significantly to improved generalization and validation performance.
+
+## Conclusion
+
+A simple CNN was successfully developed to classify waste images into six categories. The model achieved 92.91% test accuracy and demonstrated strong performance on most classes while maintaining a lightweight architecture.
+
+The system can be used as a foundation for automated waste-sorting applications and can be further improved using deeper CNN architectures, larger datasets, or transfer learning techniques.
