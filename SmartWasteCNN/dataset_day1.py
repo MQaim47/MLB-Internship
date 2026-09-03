@@ -3,9 +3,9 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 import matplotlib.pyplot as plt
 
-# ---------------------------------
-# Step 1: Image Transformations
-# ---------------------------------
+
+# Step 1 Image Transformations
+
 
 transform = transforms.Compose([
     transforms.Resize((128, 128)),
@@ -16,18 +16,18 @@ transform = transforms.Compose([
     )
 ])
 
-# ---------------------------------
-# Step 2: Load Dataset
-# ---------------------------------
+
+# Step 2 Load Dataset
+
 
 dataset = datasets.ImageFolder(
-    root="dataset/trashnet",   # Change to your dataset path
+    root="dataset/trashnet",   
     transform=transform
 )
 
-# ---------------------------------
-# Step 3: Dataset Information
-# ---------------------------------
+
+# Step 3 Dataset Information
+
 
 print("Classes:")
 print(dataset.classes)
@@ -35,9 +35,7 @@ print(dataset.classes)
 print("\nTotal Images:")
 print(len(dataset))
 
-# ---------------------------------
-# Step 4: Split Dataset
-# ---------------------------------
+# Step 4 Split Dataset
 
 total_size = len(dataset)
 
@@ -54,9 +52,7 @@ print("\nTrain Images:", len(train_dataset))
 print("Validation Images:", len(val_dataset))
 print("Test Images:", len(test_dataset))
 
-# ---------------------------------
-# Step 5: Create DataLoaders
-# ---------------------------------
+# Step 5 Create DataLoaders
 
 train_loader = DataLoader(
     train_dataset,
@@ -76,9 +72,7 @@ test_loader = DataLoader(
     shuffle=False
 )
 
-# ---------------------------------
-# Step 6: Check Batch Shape
-# ---------------------------------
+# Step 6 Check Batch Shape
 
 images, labels = next(iter(train_loader))
 
@@ -88,9 +82,7 @@ print(images.shape)
 print("\nLabel Batch Shape:")
 print(labels.shape)
 
-# ---------------------------------
-# Step 7: Display Sample Images
-# ---------------------------------
+# Step 7 Display Sample Images
 
 plt.figure(figsize=(10, 6))
 
@@ -98,10 +90,9 @@ for i in range(6):
 
     img = images[i]
 
-    # Convert C,H,W -> H,W,C
+   
     img = img.permute(1, 2, 0)
 
-    # Undo normalization
     img = (img * 0.5) + 0.5
 
     plt.subplot(2, 3, i + 1)
