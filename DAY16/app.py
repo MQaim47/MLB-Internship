@@ -1,8 +1,6 @@
 import gradio as gr
 
-# -----------------------------
 # IoU Calculation
-# -----------------------------
 def calculate_iou(box1_str, box2_str):
     try:
         box1 = list(map(float, box1_str.split(",")))
@@ -28,9 +26,7 @@ def calculate_iou(box1_str, box2_str):
         return "Invalid Input"
 
 
-# -----------------------------
 # Confidence Threshold
-# -----------------------------
 def confidence_demo(threshold):
     detections = [
         ("Dog", 0.95),
@@ -48,9 +44,7 @@ def confidence_demo(threshold):
     return result
 
 
-# -----------------------------
 # Precision Recall
-# -----------------------------
 def precision_recall(tp, fp, fn):
     try:
         precision = tp / (tp + fp)
@@ -64,9 +58,7 @@ def precision_recall(tp, fp, fn):
         return "Invalid Values"
 
 
-# -----------------------------
 # YOLO Annotation Reader
-# -----------------------------
 def read_annotation(text):
     try:
         lines = text.strip().split("\n")
@@ -96,9 +88,7 @@ def read_annotation(text):
         return "Invalid Annotation Format"
 
 
-# -----------------------------
 # NMS Demo
-# -----------------------------
 def nms_demo():
     detections = [
         ("Dog", 0.95),
@@ -114,9 +104,7 @@ def nms_demo():
     )
 
 
-# -----------------------------
 # Gradio UI
-# -----------------------------
 with gr.Blocks(title="Module 15 - Object Detection Concepts") as demo:
 
     gr.Markdown("# Module 15 - Day 1 Object Detection Concepts")

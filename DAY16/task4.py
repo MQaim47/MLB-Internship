@@ -15,9 +15,7 @@ model.train(
     epochs=20,
     imgsz=640
 )
-# ----------------------------------
 # 1. Evaluate Model
-# ----------------------------------
 
 metrics = model.val()
 
@@ -27,9 +25,7 @@ print(f"Recall        : {metrics.box.mr:.4f}")
 print(f"mAP@50        : {metrics.box.map50:.4f}")
 print(f"mAP@50:95     : {metrics.box.map:.4f}")
 
-# ----------------------------------
 # 2. Test Different NMS IoU Thresholds
-# ----------------------------------
 
 image_path = "test.jpg"
 
@@ -84,9 +80,7 @@ for iou in iou_values:
     plt.axis("off")
     plt.show()
 
-# ----------------------------------
 # 3. Test Different Confidence Thresholds
-# ----------------------------------
 
 conf_values = [0.25, 0.50, 0.75]
 

@@ -2,9 +2,7 @@ from ultralytics import YOLO
 import cv2
 import matplotlib.pyplot as plt
 
-# =====================================================
 # STEP 1: TRAIN YOLO
-# =====================================================
 
 # Load pretrained YOLOv8 model
 model = YOLO("yolov8n.pt")
@@ -21,17 +19,13 @@ results = model.train(
 
 print("Training Completed!")
 
-# =====================================================
 # STEP 2: LOAD TRAINED MODEL
-# =====================================================
 
 trained_model = YOLO(
     "YOLO_Project/custom_detector/weights/best.pt"
 )
 
-# =====================================================
 # STEP 3: INFERENCE FUNCTION
-# =====================================================
 
 def detect_objects(image_path, confidence_threshold):
 
@@ -89,9 +83,8 @@ def detect_objects(image_path, confidence_threshold):
     )
     plt.show()
 
-# =====================================================
 # STEP 4: TEST ON UNSEEN IMAGE
-# =====================================================
+
 
 test_image = "test.jpg"
 
